@@ -56,7 +56,7 @@ class WebpageServer < Sinatra::Base
     end
   end
   
-  put '/pages/:id/edit' do
+  post '/pages/:id/edit' do
     page = Page.first(:id => params[:id])
     build_page(page, params)
     
