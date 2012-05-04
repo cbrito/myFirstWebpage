@@ -30,7 +30,11 @@ $(window).keyup(function(){
 
 
 <div id="editor">
-	<form method="POST" action=<%="/pages/#{@page.id}/edit" || "/pages/new" %>>
+	<% if @page.id.nil? %>
+	<form method="POST" action="/pages/new">
+	<% else %>
+	<form method="PUT" action="/pages/<%=@page.id%>/edit">
+	<% end %>
 	Name your page:<input type="text" id="name" name="title" value="<%=@page.title || "All About ..."%>" />
 	<textarea id="about_me" name="aboutMe" rows="9" cols="60"><%= @page.aboutMe || "Write a little something about yourself so that the other kids and your Big can learn more about you." %></textarea>
 	

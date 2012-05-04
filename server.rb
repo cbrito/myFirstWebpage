@@ -56,9 +56,7 @@ class WebpageServer < Sinatra::Base
     end
   end
   
-  post '/pages/:id/edit' do
-    # This should really be a PUT method...
-    # TODO : This dosn't work, just returns an error, probably need to do each arg individually...
+  put '/pages/:id/edit' do
     page = Page.first(:id => params[:id])
     build_page(page, params)
     
