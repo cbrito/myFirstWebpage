@@ -15,6 +15,7 @@ class Page
   
   property :id,              Serial
   property :pageSlug,           String
+  property :ownerName,          String
   property :secretWord,         String
   property :createdAt,          DateTime, :required => true,  :default => DateTime.now.new_offset(0), :writer => :private
   property :updatedAt,          DateTime, :required => true,  :default => DateTime.now.new_offset(0), :writer => :private
@@ -72,6 +73,7 @@ class WebpageServer < Sinatra::Base
   def build_page(page, params)
     page.title    = params['title']
     page.pageSlug = to_slug params['title']
+    page.ownerName = params['ownerName']
     
     page.bgImage  = params['bgImage']
     page.bgColor  = params['bgColor']
@@ -88,9 +90,9 @@ class WebpageServer < Sinatra::Base
     # TODO Create some sort of landing page
   end
   
-
-    
   get '/pages' do
+    @pages = Page.all
+    erb :pages
   end
   
   get '/pages/new' do
@@ -124,7 +126,8 @@ class WebpageServer < Sinatra::Base
     build_page(page, params)
     
     if page.save
-      redirect "/pages/#{page.id}"
+      redirect "/#{page.id}/#{page.pageSlug}"
+      #redirect "/pages/#{page.id}"
     else
       @page.errors
     end

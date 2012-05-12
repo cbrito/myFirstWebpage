@@ -1,0 +1,10 @@
+<h1>Page Listing</h1>
+<table>
+	<% @pages.reverse.each do |page| %>
+	<tr>
+		<td><%=page.id%></td>
+		<td>&nbsp;</td>
+		<td> <a href='<%="/#{page.id}/#{page.pageSlug}"%>'><%=page.pageSlug%></a> </td>
+	</tr>
+	<% end %>
+</table>
