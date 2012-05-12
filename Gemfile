@@ -6,5 +6,6 @@ gem "thin"
 
 
 group :production do
-  gem "dm-postgres-adapter"
+	# For Heroku
+  	gem "dm-postgres-adapter"
 end

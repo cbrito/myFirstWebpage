@@ -1,0 +1,101 @@
+/*
+Font Resources:
+	http://www.kirsle.net/wizards/ttf2eot.cgi
+	http://www.onextrapixel.com/2011/05/03/understanding-and-using-embedded-fonts-what-why-and-how/
+*/
+@font-face {
+ font-family: Abril;
+ src: url("/fonts/TYPEABRIL_2.eot"); /* EOT file for IE */
+}
+@font-face {
+ font-family: Abril;
+ src: url("/fonts/TYPEABRIL_2.ttf"); /* TTF file for CSS3 browsers */
+} 
+
+@font-face {
+ font-family: Amerika;
+ src: url("/fonts/AMERIKA_.eot"); /* EOT file for IE */
+}
+@font-face {
+ font-family: Amerika;
+ src: url("/fonts/AMERIKA_.ttf"); /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+ font-family: Backlash;
+ src: url("/fonts/backlash.eot"); /* EOT file for IE */
+}
+@font-face {
+ font-family: Backlasth;
+ src: url("/fonts/backlash.ttf"); /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+ font-family: Chalkboard;
+ src: url("/fonts/chalkboard.eot"); /* EOT file for IE */
+}
+@font-face {
+ font-family: Chalkboard;
+ src: url("/fonts/chalkboard.ttf"); /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+ font-family: EastMotel;
+ src: url("/fonts/eastm___.eot"); /* EOT file for IE */
+}
+@font-face {
+ font-family: EastMotel;
+ src: url("/fonts/eastm___.ttf"); /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+ font-family: Metror;
+ src: url("/fonts/metror.eot"); /* EOT file for IE */
+}
+@font-face {
+ font-family: Metror;
+ src: url("/fonts/metror.ttf"); /* TTF file for CSS3 browsers */
+}
+
+
+#content { 
+  overflow:auto; 
+  width: 100%; 
+  background: gray; 
+} 
+
+#editor { 
+  width: 45%; 
+  margin:5px; 
+  padding: 1em; 
+	border: 3px dashed silver;
+	font-family: "Helvetica", "Verdana", "Georgia";
+}
+
+#rendered { 
+  width: 45%; 
+  margin:5px; 
+  padding: 1em; 
+/*  background: white; 	*/
+	border: 4px solid black;
+} 
+
+
+#editor  { float:left;  }
+#rendered { margin-left:auto;
+margin-right:auto; }
+#preview #rendered { float:left; background-color:white; } 
+
+
+#image_result {float:right;}
+
+.bgSwatch {
+	margin: 5px;
+	width: 40px; 
+	height: 40px; 
+	float: left;
+}
+
+.clearBoth {
+	clear:both;
+}

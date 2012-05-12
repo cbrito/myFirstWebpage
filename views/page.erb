@@ -1,58 +1,153 @@
-<style>
-#content { 
-  overflow:auto; 
-  width: 100%; 
-  background: gray; 
-} 
 
-#editor, #rendered { 
-  width: 45%; 
-  margin:5px; 
-  padding: 1em; 
-  background: white; 
-} 
-
-#editor  { float:left;  }
-#rendered { float:left; } 
-
-</style>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 
 <script type="text/javascript">
+	// Make sure we ask the user for a secret word before 
+	// saving so they can edit in the future!
+	
+	$(document).ready(function() {
+		var $dialog = $('<div></div>')
+			.html('Enter a secret word: <input type="text" name="secretWord">')
+			.dialog({
+				autoOpen: false,
+				title: 'Secret Word'
+			});
+
+			$('#opener').click(function() {
+				$dialog.dialog('open');
+				// prevent the default action, e.g., following a link
+				return false;
+			});
+
+	
+		//$('#form').append($(input));
+		//$('#form').submit($(input));
+	
+	
+	});
+</script>
+
+<script type="text/javascript">
+
+//Update the preview HTML
 $(window).keyup(function(){ 
     $('#name_result').html($('#name').val());
     $('#about_me_result').html($('#about_me').val());
-    $('#movie_result').html($('#movie_code').val());
-    $('#tv_show_result').html($('#tv_show_code').val());
+    $('#after_school_result').html($('#after_school').val());
+    $('#fave_things_result').html($('#fave_things').val());
+    $('#what_i_want_to_be_result').html($('#what_i_want_to_be').val());
+
+
+	// TODO: This can be fixed with an if statement
+	$('#image_result').html('<img src=' + $('#imageUrl').val() + ' />')
 });
+
+
+// Update the preview with the selected background image
+$(document).ready(function() {	
+	$('input[name=bgImage]:radio').click(function() {
+		//Ensure that only a bgImage or a bgColor is selected
+		$('input[name=bgColor]:radio').prop('checked', false);
+		
+	    $('#rendered').css('background-image', 
+							'url(/images/' + $(this).attr('value') + ')');
+	});
+	
+	$('input[name=bgColor]:radio').click(function() {
+		//Ensure that only a bgImage or a bgColor is selected
+		$('input[name=bgImage]:radio').prop('checked', false);
+		
+		$('#rendered').css('background-image', 'none');
+	    $('#rendered').css('background-color', $(this).attr('value'));
+	});
+
+	$('input[name=customBgColor]:text').keyup(function() {
+		//Update all values when the user selects a custom background color
+		$('input[name=bgImage]:radio').prop('checked', false);
+		$('input[id=customBgColorButton]:radio').attr('value', $(this).attr('value'));
+		$('input[id=customBgColorButton]:radio').attr('checked', true);
+		
+		$('#rendered').css('background-image', 'none');
+		$('#rendered').css('background-color', $(this).attr('value'));
+	});
+
+});
+
+// Update Preview Fonts
+$(document).ready(function() {
+	$('#font').change(function() {
+		$('#rendered').css('font-family', $(this).attr('value'));
+	});
+});
+
 </script>
 
 
 <div id="editor">
 	<% if @page.id.nil? %>
-	<form method="POST" action="/pages/new">
+	<form id="page_data_form" method="POST" action="/pages/new">
 	<% else %>
-	<form method="POST" action="/pages/<%=@page.id%>/edit">
+	<form id="page_data_form" method="POST" action="/pages/<%=@page.id%>/edit">
 	<% end %>
-	Name your page:<input type="text" id="name" name="title" value="<%=@page.title || "All About ..."%>" />
-	<textarea id="about_me" name="aboutMe" rows="9" cols="60"><%= @page.aboutMe || "Write a little something about yourself so that the other kids and your Big can learn more about you." %></textarea>
+
+	Name your page:
+	<br /><input type="text" size="40" id="name" name="title" value="<%=@page.title || "All About ..."%>" />
+	<p>Picture URL: 
+	<br /><input type="text" size="40" id="imageUrl" name="imageUrl" value="<%=@page.imageUrl%>"></p>
 	
-	<p>Favorite Things:
-	<br /><input type="text" id="movie_code" value="Movie">
-	<br /><input type="text" id="tv_show_code" value="Tv Show">
+	<p>
+		<div class="bgSwatch" style="background-color:white;"><input type="radio" name="bgColor" value="white" checked="true"></div>
+
+		
+		<div class="bgSwatch" style="background-image: url(/images/background_blue_winter.jpg);"><input type="radio" name="bgImage" value="background_blue_winter.jpg"></div>		
+		<div class="bgSwatch" style="background-image: url(/images/background_brown_fabric.jpg);"><input type="radio" name="bgImage" value="background_brown_fabric.jpg"></div>
+		<div class="bgSwatch" style="background-image: url(/images/background_green_wood.jpg);"><input type="radio" name="bgImage" value="background_green_wood.jpg"></div>	
+		<div class="bgSwatch" style="background-image: url(/images/background_pink_flowers.jpg);"><input type="radio" name="bgImage" value="background_pink_flowers.jpg"></div>		
+		<div class="bgSwatch" style="background-image: url(/images/background_yellow_parchment.jpg);"><input type="radio" name="bgImage" value="background_yellow_parchment.jpg"></div>			
+
+		<div class="bgSwatch" style="width:80px"><input type="radio" name="bgColor" id="customBgColorButton"><font size=1>Custom:</font><input type="text" name="customBgColor" value="<%=@page.bgColor%>" size="10"></div>
+		
+
+		
+<br />&nbsp;</p>
 	
-	<p><input type="submit" value="save"> or <a href="/">discard</a>
+	<p>Select your page font:
+		<br />
+		<select name="font" id="font">
+			<option>Abril</option>
+			<option>Amerika</option>
+			<option>Backlasth</option>
+			<option>Chalkboard</option>
+			<option value="Comic Sans MS">Comic Sans</option>
+			<option>EastMotel</option>
+			<option>Metror</option>
+			<option selected="selected">Helvetica</option>
+		</select>
+	</p>
+	
+	<p>Tell the world about you:
+	<br /><textarea id="about_me" name="aboutMe" rows="7" cols="60"><%= @page.aboutMe || "Write a little something about yourself so that the other kids and your Big can learn more about you." %></textarea></p>
+	
+	<p>What do you like to do after school?
+	<br /><textarea id="after_school" name="afterSchoolActivities" rows="7" cols="60"><%= @page.afterSchoolActivities || "Tell people about your favorite thing to do after school." %></textarea></p>
+	
+	<p>Create a bulleted list of your favorite things (e.g., favorite movie, TV show, sports, food, etc...) or create some links to your favorite websites. 
+	<br /><textarea id="fave_things" name="faveThings" rows="7" cols="30"><%= @page.faveThings || "" %></textarea></p>
+	
+	<p>What would you like to be when you grown up?
+	<br /><textarea id="what_i_want_to_be" name="whatIWantToBe" rows="7" cols="30"><%= @page.whatIWantToBe || "Enter some text about what you would want to be when you grow up. Feel free to include links to pictures or websites about that topic." %></textarea></p>
+	
+<!--	<p><button id="opener">Secret Word Button</button></p> -->
+	<p><input type="submit" value="save" id="submit"> or <a href="/">discard</a></p>
 	</form>
 </div>
 
-<div id="rendered">
-	<h2><div id="name_result"><%=@page.title || "All About ..."%></div></h2>
-	<div id="about_me_result"><%= @page.aboutMe || "Write a little something about yourself so that the other kids and your Big can learn more about you." %></div>
-	
-	Favorite Things:
-	<ul>
-		<li id="movie_result"></li>
-		<li id="tv_show_result"></li>
-	</ul>
+
+
+
+
+
+
+
+<div id="preview">
+<%=erb :_page_content, :layout => false %>
 </div>

@@ -1,0 +1,22 @@
+<style>
+#rendered {
+	background-image: url(/images/<%=@page.bgImage%>);
+	background-color: <%=@page.bgColor%>;
+	font-family: <%=@page.font%>;
+}
+</style>
+
+<div id="rendered">
+	<h2><div id="name_result"><%=@page.title || "All About ..."%></div></h2>
+	<div id="image_result"><img src="<%=@page.imageUrl%>" /></div>
+
+	<div id="about_me_result"><%= @page.aboutMe || "Write a little something about yourself so that the other kids and your Big can learn more about you." %></div>
+
+
+	<div id="after_school_result"><%= @page.afterSchoolActivities || "Tell people about your favorite thing to do after school." %></div>
+	
+	<div id="fave_things_result"><%= @page.faveThings || "These are some of my favorite things:" %></div>
+		
+	<div id="what_i_want_to_be_result"><%= @page.whatIWantToBe || "I would like to be... when I grow up!" %></div>
+	
+</div>
