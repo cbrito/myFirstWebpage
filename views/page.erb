@@ -37,8 +37,14 @@ $(window).keyup(function(){
     $('#what_i_want_to_be_result').html($('#what_i_want_to_be').val());
 
 
-	// TODO: This can be fixed with an if statement
-	$('#image_result').html('<img src=' + $('#imageUrl').val() + ' />')
+	// Only paint the image if someone enters in text
+	if ($('#imageUrl').val() == "") {
+		$('#image_result').html('');
+	}
+	else {
+		$('#image_result').html('<img src=' + $('#imageUrl').val() + ' />');
+	}
+
 });
 
 
@@ -128,13 +134,13 @@ $(document).ready(function() {
 	<br /><textarea id="about_me" name="aboutMe" rows="7" cols="60"><%= @page.aboutMe || "Write a little something about yourself so that the other kids and your Big can learn more about you." %></textarea></p>
 	
 	<p>What do you like to do after school?
-	<br /><textarea id="after_school" name="afterSchoolActivities" rows="7" cols="60"><%= @page.afterSchoolActivities || "Tell people about your favorite thing to do after school." %></textarea></p>
+	<br /><textarea id="after_school" name="afterSchoolActivities" rows="7" cols="60"><%= @page.afterSchoolActivities || "<p>Tell people about your favorite thing to do after school." %></textarea></p>
 	
 	<p>Create a bulleted list of your favorite things (e.g., favorite movie, TV show, sports, food, etc...) or create some links to your favorite websites. 
-	<br /><textarea id="fave_things" name="faveThings" rows="7" cols="30"><%= @page.faveThings || "" %></textarea></p>
+	<br /><textarea id="fave_things" name="faveThings" rows="7" cols="30"><%= @page.faveThings || "<h3>My Favorite Things</h2>" %></textarea></p>
 	
 	<p>What would you like to be when you grown up?
-	<br /><textarea id="what_i_want_to_be" name="whatIWantToBe" rows="7" cols="30"><%= @page.whatIWantToBe || "Enter some text about what you would want to be when you grow up. Feel free to include links to pictures or websites about that topic." %></textarea></p>
+	<br /><textarea id="what_i_want_to_be" name="whatIWantToBe" rows="7" cols="30"><%= @page.whatIWantToBe || "<h3>When I grow up</h2><p>Enter some text about what you would want to be when you grow up. Feel free to include links to pictures or websites about that topic." %></textarea></p>
 	
 <!--	<p><button id="opener">Secret Word Button</button></p> -->
 	<p><input type="submit" value="save" id="submit"> or <a href="/">discard</a></p>
