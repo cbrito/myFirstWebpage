@@ -7,11 +7,15 @@
 </style>
 
 <div id="rendered">
-	<h2><div id="name_result"><%=@page.title || "All About ..."%></div></h2>
-	<div id="image_result"><img src="<%=@page.imageUrl%>" /></div>
+	<h1><div id="name_result"><%=@page.title || "All About ..."%></div></h1>
+	
+	<div id="image_result">
+	<% unless @page.imageUrl.nil? || @page.imageUrl == "" %>
+		<img src="<%=@page.imageUrl%>" />
+	<% end %>
+	</div>
 
 	<div id="about_me_result"><%= @page.aboutMe || "Write a little something about yourself so that the other kids and your Big can learn more about you." %></div>
-
 
 	<div id="after_school_result"><%= @page.afterSchoolActivities || "Tell people about your favorite thing to do after school." %></div>
 	
