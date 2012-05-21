@@ -17,10 +17,10 @@
 
 	<div id="about_me_result"><%= @page.aboutMe || "Write a little something about yourself so that the other kids and your Big can learn more about you." %></div>
 
-	<div id="after_school_result"><%= @page.afterSchoolActivities || "Tell people about your favorite thing to do after school." %></div>
+	<div id="after_school_result"><%= @page.afterSchoolActivities || "<p>Tell people about your favorite thing to do after school." %></div>
 	
-	<div id="fave_things_result"><%= @page.faveThings || "These are some of my favorite things:" %></div>
+	<div id="fave_things_result"><%= @page.faveThings || "<h3>My Favorite Things</h3>\n<ul>\n<li>Thing1\n<li>Thing2" %></div>
 		
-	<div id="what_i_want_to_be_result"><%= @page.whatIWantToBe || "I would like to be... when I grow up!" %></div>
+	<div id="what_i_want_to_be_result"><%= @page.whatIWantToBe || "<h3>When I grow up</h3><p>Enter some text about what you would want to be when you grow up. Feel free to include links to pictures or websites about that topic." %></div>
 	
 </div>

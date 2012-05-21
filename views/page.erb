@@ -105,8 +105,8 @@ $(document).ready(function() {
 
 		
 		<div class="bgSwatch" style="background-image: url(/images/background_blue_winter.jpg);"><input type="radio" name="bgImage" value="background_blue_winter.jpg"></div>		
-		<div class="bgSwatch" style="background-image: url(/images/background_brown_fabric.jpg);"><input type="radio" name="bgImage" value="background_brown_fabric.jpg"></div>
-		<div class="bgSwatch" style="background-image: url(/images/background_green_wood.jpg);"><input type="radio" name="bgImage" value="background_green_wood.jpg"></div>	
+		<div class="bgSwatch" style="background-image: url(/images/background_wood.jpg);"><input type="radio" name="bgImage" value="background_wood.jpg"></div>
+		<div class="bgSwatch" style="background-image: url(/images/background_green_spattered.jpg);"><input type="radio" name="bgImage" value="background_green_spattered.jpg"></div>	
 		<div class="bgSwatch" style="background-image: url(/images/background_pink_flowers.jpg);"><input type="radio" name="bgImage" value="background_pink_flowers.jpg"></div>		
 		<div class="bgSwatch" style="background-image: url(/images/background_yellow_parchment.jpg);"><input type="radio" name="bgImage" value="background_yellow_parchment.jpg"></div>			
 
@@ -137,7 +137,7 @@ $(document).ready(function() {
 	<br /><textarea id="after_school" name="afterSchoolActivities" rows="7" cols="60"><%= @page.afterSchoolActivities || "<p>Tell people about your favorite thing to do after school." %></textarea></p>
 	
 	<p>Create a bulleted list of your favorite things (e.g., favorite movie, TV show, sports, food, etc...) or create some links to your favorite websites. 
-	<br /><textarea id="fave_things" name="faveThings" rows="7" cols="30"><%= @page.faveThings || "<h3>My Favorite Things</h2>" %></textarea></p>
+	<br /><textarea id="fave_things" name="faveThings" rows="7" cols="30"><%= @page.faveThings || "<h3>My Favorite Things</h3>\n<ul>\n<li>Thing1\n<li>Thing2" %></textarea></p>
 	
 	<p>What would you like to be when you grown up?
 	<br /><textarea id="what_i_want_to_be" name="whatIWantToBe" rows="7" cols="30"><%= @page.whatIWantToBe || "<h3>When I grow up</h3><p>Enter some text about what you would want to be when you grow up. Feel free to include links to pictures or websites about that topic." %></textarea></p>
