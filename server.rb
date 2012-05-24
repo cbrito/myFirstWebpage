@@ -135,9 +135,9 @@ class WebpageServer < Sinatra::Base
   
   get '/:id/:slug' do
     # Get a page based on slug-name
-    @page = Page.first(:pageSlug => params[:slug])
-    redirect "/pages/#{@page.id}"
-    #erb :_page_content
+    @page = Page.last(:pageSlug => params[:slug])
+    #redirect "/pages/#{@page.id}"
+    erb :_page_content
   end
         
 end #class WebpageServer
