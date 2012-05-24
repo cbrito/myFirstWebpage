@@ -59,7 +59,7 @@ Font Resources:
 
 
 #content { 
-  overflow:auto; 
+  overflow:auto;
   width: 100%; 
   background: gray; 
 } 
@@ -89,8 +89,10 @@ margin-right:auto; }
 
 #image_result {
 	float:right;
-	max-width: 100%; /* Prevent ourselves from outgrowing our container */
+	width: 100%;
 }
+
+#image_result img {max-width: 100%; /* Prevent ourselves from outgrowing our container */}
 
 .bgSwatch {
 	margin: 5px;
