@@ -96,6 +96,4 @@ margin-right:auto; }
 	float: left;
 }
 
-.clearBoth {
-	clear:both;
-}
+.clear {clear: both; }
