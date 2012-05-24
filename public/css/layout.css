@@ -87,7 +87,10 @@ margin-right:auto; }
 #preview #rendered { float:left; background-color:white; } 
 
 
-#image_result {float:right;}
+#image_result {
+	float:right;
+	max-width: 100%; /* Prevent ourselves from outgrowing our container */
+}
 
 .bgSwatch {
 	margin: 5px;
@@ -95,5 +98,6 @@ margin-right:auto; }
 	height: 40px; 
 	float: left;
 }
+
 
 .clear {clear: both; }
